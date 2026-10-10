@@ -1,4 +1,4 @@
-import { navbarStyles } from "../assets/dummyStyles";
+import { navbarStyles as a } from "../assets/dummyStyles";
 import { clock } from "lucide-react";
 import {Link} from "react-router-dom";
 const Navbar = () => {
