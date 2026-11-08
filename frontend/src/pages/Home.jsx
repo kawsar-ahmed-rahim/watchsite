@@ -1,10 +1,10 @@
-// import Navbar from "../components/Navbar";
 import BannerHome from "../components/BannerHome";
+import CategoriesHome from "../components/CategoriesHome";
 const Home = () => {
   return (
     <div>
-      {/* <Navbar /> */}
       <BannerHome />
+      <CategoriesHome />
     </div>
   );
 };
