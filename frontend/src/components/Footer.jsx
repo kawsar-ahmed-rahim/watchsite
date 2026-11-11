@@ -5,11 +5,31 @@ import {
   Mail,
   Phone,
   MapPin,
-  Facebook,
-  Instagram,
-  Twitter,
   Heart,
 } from "lucide-react";
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+
+const socialLinks = [
+  { Icon: FaFacebookF, label: "Facebook" },
+  { Icon: FaInstagram, label: "Instagram" },
+  { Icon: FaTwitter, label: "Twitter" },
+];
+
+const exploreLinks = [
+  { label: "Collections", href: "/watches" },
+  { label: "New Arrivals", href: "/watches" },
+  { label: "Best Sellers", href: "/watches" },
+  { label: "Limited Editions", href: "/watches" },
+  { label: "Our Story", href: "/watches" },
+];
+
+const supportLinks = [
+  "Contact Us",
+  "Shipping & Returns",
+  "Product Care",
+  "Warranty",
+  "FAQ",
+];
 
 const Footer = () => {
   return (
@@ -28,46 +48,17 @@ const Footer = () => {
               height="100"
               patternUnits="userSpaceOnUse"
             >
-              <circle
-                cx="50"
-                cy="50"
-                r="48"
-                stroke="currentColor"
-                strokeWidth="1"
-                fill="none"
-              />
-              <circle
-                cx="50"
-                cy="50"
-                r="40"
-                stroke="currentColor"
-                strokeWidth="1"
-                fill="none"
-              />
-              <circle
-                cx="50"
-                cy="50"
-                r="30"
-                stroke="currentColor"
-                strokeWidth="1"
-                fill="none"
-              />
-              <circle
-                cx="50"
-                cy="50"
-                r="20"
-                stroke="currentColor"
-                strokeWidth="1"
-                fill="none"
-              />
-              <circle
-                cx="50"
-                cy="50"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="1"
-                fill="none"
-              />
+              {[48, 40, 30, 20, 10].map((r) => (
+                <circle
+                  key={r}
+                  cx="50"
+                  cy="50"
+                  r={r}
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  fill="none"
+                />
+              ))}
             </pattern>
           </defs>
           <rect
@@ -79,7 +70,9 @@ const Footer = () => {
           />
         </svg>
       </div>
+
       <div className={a.mainContainer}>
+        {/* Newsletter */}
         <div className={a.newsletterSection}>
           <div className={a.newsletterContent}>
             <h3 className={a.newsletterTitle}>Timeless Elegance, Delivered</h3>
@@ -98,71 +91,77 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* main footer */}
+        {/* Main footer grid */}
         <div className={a.mainGrid}>
-          <div className={a.brandSection}>
-            <div className={a.brandContainer}>
+          {/* Column 1: Brand (FIX: forced column layout) */}
+          <div className={a.brandSection} style={{ display: "block" }}>
+            <div
+              className={a.brandContainer}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                gap: "1rem",
+                width: "100%",
+              }}
+            >
               <div className={a.brandIconContainer}>
                 <div className={a.brandIconPing}>
                   <Clock className={a.brandIcon} />
                 </div>
                 <span className={a.brandName}>ChronoElite</span>
               </div>
-              <p className={a.brandDescription}>
+
+              <p className={a.brandDescription} style={{ maxWidth: "100%" }}>
                 Crafting timeless pieces for the discerning individual; where
                 precision meets elegance in every detail.
               </p>
 
-              <div className={a.socialIconsContainer}>
-                {[Facebook, Instagram, Twitter].map((Icon, index) => (
-                  <a href="#" key={index} className={a.socialIcon}>
+              <div
+                className={a.socialIconsContainer}
+                style={{ display: "flex", gap: "0.75rem" }}
+              >
+                {socialLinks.map(({ Icon, label }) => (
+                  <a
+                    href="#"
+                    key={label}
+                    aria-label={label}
+                    className={a.socialIcon}
+                  >
                     <Icon className={a.socialIconInner} />
                   </a>
                 ))}
               </div>
             </div>
-
-            {/* quick links */}
-
-            <div>
-              <h3 className={a.sectionHeading}>
-                <ChevronRight className={a.sectionIcon} />
-                Explore
-              </h3>
-
-              <ul className={a.linksList}>
-                {[
-                  { label: "Collections", href: "/watches" },
-                  { label: "New Arrivals", href: "/watches" },
-                  { label: "Best Sellers", href: "/watches" },
-                  { label: "Limited Editions", href: "/watches" },
-                  { label: "Our Story", href: "/watches" },
-                ].map((item) => (
-                  <li key={item.label}>
-                    <a href={item.href} className={a.linkItem}>
-                      <ChevronRight className={a.linkIcon} />
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
-          {/* customer service */}
 
+          {/* Column 2: Explore */}
+          <div>
+            <h3 className={a.sectionHeading}>
+              <ChevronRight className={a.sectionIcon} />
+              Explore
+            </h3>
+
+            <ul className={a.linksList}>
+              {exploreLinks.map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} className={a.linkItem}>
+                    <ChevronRight className={a.linkIcon} />
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Support */}
           <div>
             <h3 className={a.sectionHeading}>
               <ChevronRight className={a.sectionIcon} />
               Support
             </h3>
             <ul className={a.linksList}>
-              {[
-                "Contact Us",
-                "Shipping & Returns",
-                "Product Care",
-                "Warranty",
-                "FAQ",
-              ].map((item) => (
+              {supportLinks.map((item) => (
                 <li key={item}>
                   <a href="#" className={a.supportLink}>
                     <ChevronRight className={a.linkIcon} />
@@ -172,7 +171,8 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          {/* Contact Info */}
+
+          {/* Column 4: Contact */}
           <div>
             <h3 className={a.sectionHeading}>
               <ChevronRight className={a.sectionIcon} />
@@ -203,11 +203,11 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* bottom lines */}
+        {/* Bottom line */}
         <div className={a.bottomSection}>
           <p className={a.copyright}>
             &copy; {new Date().getFullYear()} ChronoElite. Crafted with{" "}
-            <Heart className={a.heartIcon} /> in bangladesh
+            <Heart className={a.heartIcon} /> in Bangladesh
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             <p className={a.designerLink}>
@@ -224,6 +224,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
       <style>{a.mediaQueries}</style>
     </footer>
   );
