@@ -38,12 +38,12 @@ const Navbar = () => {
     try {
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("authToken");
-    } catch (error) {
+    } catch (error) { }
       setLoggedIn(false);
       setOpen(false);
       navigate("/");
       console.log(error);
-    }
+   
   };
   return (
     <header className={a.header}>

@@ -1,7 +1,7 @@
 import { brandPageStyles as a } from "../assets/dummyStyles";
 import { useNavigate, useParams } from "react-router-dom";
 import watchesData from "../assets/Categoriesdata";
-import { useCart } from "../CartContext";
+import { useCart } from "../cartContext";
 import { useState, useEffect } from "react";
 import { ArrowLeft, Plus, Minus } from "lucide-react";
 const BrandPage = () => {
