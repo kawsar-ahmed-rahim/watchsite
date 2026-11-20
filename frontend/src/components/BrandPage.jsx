@@ -3,12 +3,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import watchesData from "../assets/Categoriesdata";
 import { useCart } from "../CartContext";
 import { useState, useEffect } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Plus, Minus } from "lucide-react";
 const BrandPage = () => {
   const { brandName } = useParams();
   const navigate = useNavigate();
   const brandWatches = watchesData[brandName?.toLowerCase()] || [];
-  const { addItem, cart, increment, decement } = useCart();
+  const { addItem, cart, increment, decrement } = useCart();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -68,6 +68,35 @@ const BrandPage = () => {
                   <img src={watch.image} alt={watch.name} className={a.image} />
                 </div>
                 {/* watch detail */}
+                <div className={a.detailsContainer}>
+                  <h className={a.watchName}>{watch.name}</h>
+                  <p className={a.watchDesc}>{watch.desc}</p>
+                  <div className={a.priceAndControls}>
+                    <p className={a.price}>{watch.price}</p>
+
+                    {inCart ? (
+                      <div className={a.quantityContainer}>
+                        <button onClick={()=>decrement(watch.id)} className={a.quantityButton}>
+                          <Minus size={16} />
+                          </button>
+                          <div className={a.quantityCount}>{inCart.qty}</div>
+                          <button onClick={()=>increment(watch.id)} className={a.quantityButton}>
+                            <Plus size={16} />
+                          </button>
+                          </div>
+                    ):(
+                      <button onClick={()=>addItem({
+                        id: watch.id,
+                        name: watch.name,
+                        price: watch.price,
+                        img: watch.image
+                      })} className={a.addButton}>
+                        <span>Add</span>
+                      </button>
+                    )}
+                  </div>
+                </div>
+
                 
               </div>
             );
