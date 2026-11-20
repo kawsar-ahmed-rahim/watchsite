@@ -166,12 +166,7 @@ const LoginPage = () => {
                 </label>
               </div>
             </div>
-            <button className={a.signupContainer}>
-              <span className={a.signupText}>Don't have an account? </span>
-              <a href="/signup" className={a.signupLink}>
-                Sign up
-              </a>
-            </button>
+            <button className={a.submitButton}>Login</button>
           </form>
         </div>
       </div>
